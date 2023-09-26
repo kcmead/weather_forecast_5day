@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Dashboard</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <style>
+            body {
+                background-color: lightblue
+            }
+    </style>
+</head>
+<body>
+    <header style="text-align: center; margin-bottom: 20px;">
+        <h1>Weather Dashboard</h1>
+        <form id="city-form">
+            <input type="text" id="city-input" placeholder="Enter a city">
+            <button type="submit">Search</button>
+        </form>
+    </header>
+    
+    <main>
+        <div class="row">
+            <aside class="col-md-3">
+                <h2>Search History</h2>
+                <ul id="search-history">
+                    <!-- Display a list of search history cities here -->
+                </ul>
+            </aside>
+            </div>
+        <div class="row text-center">
+            <section id="current-weather" class="col-md-6 col-md-offset-3">
+                <h2>Current Weather</h2>
+                <div id="current-weather-info">
+                    <!-- Display city name, date, weather icon, temperature, humidity, and wind speed here -->
+                </div>
+            </section>
+        </div>
+        
+        <div class="row">
+            <section id="forecast" class="col-md-6">
+                <h2>5-Day Forecast</h2>
+                <div id="forecast-info">
+                    <!-- Display 5-day forecast information here -->
+                </div>
+            </section>
+        </div>
+    </main>
+ 
+    <script src="./script.js"></script>
+</body>
+</html>
