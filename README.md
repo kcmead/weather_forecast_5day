@@ -16,9 +16,13 @@ N/A
 
 This website is intended to be a learning exercise for the things I've been learning in javascript as the course progresses.  There may be some more updates in the future as I learn more.
 
-## Credits
+## Screenshots
 
-N/A
+**Home Page**
+![home](./assets/images/home.png)
+
+**Search History**
+![history](./assets/images/history.png)
 
 ## License
 
