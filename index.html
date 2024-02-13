@@ -1,53 +1,216 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Weather Dashboard</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <style>
-            body {
-                background-color: lightblue
-            }
-    </style>
+   <!-- Meta tags for character set, compatibility, and viewport settings -->
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <!-- Page title -->
+   <title>Five Day Forecast</title>
+   <!-- Font Awesome - Icon library -->
+   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+   <!-- Google Fonts - Roboto font family -->
+   <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
+   <!-- MDB - Material Design for Bootstrap library -->
+   <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.2.0/mdb.min.css" rel="stylesheet" />
+   <!-- Custom Stylesheets -->
+   <link rel="stylesheet" href="./assets/css/style.css" />
 </head>
+
 <body>
-    <header style="text-align: center; margin-bottom: 20px;">
-        <h1>Weather Dashboard</h1>
-        <form id="city-form">
-            <input type="text" id="city-input" placeholder="Enter a city">
-            <button type="submit">Search</button>
-        </form>
-    </header>
-    
-    <main>
-        <div class="row">
-            <aside class="col-md-3">
-                <h2>Search History</h2>
-                <ul id="search-history">
-                    <!-- Display a list of search history cities here -->
-                </ul>
-            </aside>
+
+   <header>
+      <!-- Background image for the header -->
+      <div class="p-5 text-center bg-image" style="
+            background-image: url(./assets/images/weather-banner-vector.jpg);
+            height: 100px;
+          ">
+         <!-- Overlay with background color -->
+         <div class="mask" style="background-color: rgba(0, 0, 0, 0.25);">
+            <!-- Centered content within the header -->
+            <div class="d-flex justify-content-center align-items-center h-100">
+               <!-- White text content -->
+               <div class="text-white">
+                  <!-- Heading for the page -->
+                  <h1 class="mb-3">Five Day Forecast</h1>
+               </div>
             </div>
-        <div class="row text-center">
-            <section id="current-weather" class="col-md-6 col-md-offset-3">
-                <h2>Current Weather</h2>
-                <div id="current-weather-info">
-                    <!-- Display city name, date, weather icon, temperature, humidity, and wind speed here -->
-                </div>
-            </section>
-        </div>
-        
-        <div class="row">
-            <section id="forecast" class="col-md-6">
-                <h2>5-Day Forecast</h2>
-                <div id="forecast-info">
-                    <!-- Display 5-day forecast information here -->
-                </div>
-            </section>
-        </div>
-    </main>
- 
-    <script src="./script.js"></script>
+         </div>
+      </div>
+      <!-- Background image for the header -->
+   </header>
+
+   <main>
+      <!-- Search Bar -->
+      <div class="search">
+         <!-- List for city, state, and country input boxes -->
+         <ul class="entrybox">
+            <!-- City Search Input -->
+            <li class="form-outline">
+               <input type="text" id="search-input-city" class="form-control" data-mdb-container="body"
+                  data-mdb-toggle="popover" data-mdb-placement="right" data-mdb-trigger="focus"
+                  data-mdb-content="Enter the city name." />
+               <label class="form-label" for="search-input-city">City*</label>
+            </li>
+            <!-- State Search Input -->
+            <li class="form-outline">
+               <input type="text" id="search-input-state" class="form-control" data-mdb-container="body"
+                  data-mdb-toggle="popover" data-mdb-placement="right" data-mdb-trigger="focus"
+                  data-mdb-content="Enter the two-letter state code. (US Only)" />
+               <label class="form-label" for="search-input-state">State</label>
+            </li>
+            <!-- Country Search Input -->
+            <li class="form-outline">
+               <input type="text" id="search-input-country" class="form-control" data-mdb-container="body"
+                  data-mdb-toggle="popover" data-mdb-placement="right" data-mdb-trigger="focus"
+                  data-mdb-content="Enter the two-letter country code." />
+               <label class="form-label" for="search-input-country">Country</label>
+            </li>
+         </ul>
+         <!-- History Dropdown and Search Button -->
+         <ul class="searchbox">
+            <!-- Dropdown for History Entries -->
+            <li class="dropdown">
+               <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton"
+                  data-mdb-toggle="dropdown" aria-expanded="false">
+                  History
+               </button>
+               <!-- Dropdown list for history entries -->
+               <ul id="city-dropdown" class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+               </ul>
+            </li>
+            <!-- Search Button -->
+            <li>
+               <button id="search-button" type="button" class="btn btn-primary">Search</button>
+            </li>
+         </ul>
+      </div>
+      <!-- Search Bar -->
+
+      <!-- Current Weather Card -->
+      <div id="main-card">
+         <!-- Card for displaying current weather information -->
+         <div class="card mb-3 text-center current-weather-card">
+            <div class="card-body">
+               <!-- Heading for Current Weather Card -->
+               <h4 class="card-title">Current Weather in <span class="card-city">...</span>, <span
+                     class="card-country">...</span></h4>
+               <!-- Date for Current Weather -->
+               <h5 class="card-date">Date</h5>
+               <!-- Row for Weather Details and Metrics -->
+               <div class="row">
+                  <!-- Column for Weather Conditions and Icon -->
+                  <div class="col-6">
+                     <p class="card-weather">Conditions</p>
+                     <!-- Weather Icon -->
+                     <img class="card-icon" src="./assets/images/icons8-question-mark-100.png" alt="weather icon" />
+                  </div>
+                  <!-- Column for Weather Metrics -->
+                  <div class="col-6 metrics">
+                     <!-- Temperature, Humidity, and Wind Metrics -->
+                     <p>Temp: <span class="card-temp"></span> °F</p>
+                     <p>RH: <span class="card-humidity"></span>%</p>
+                     <p>Wind: <span class="card-wind"></span> MPH</p>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </main>
+
+   <!-- 5 Day Forecast Section -->
+   <section>
+      <!-- Card Group for 5 Day Forecast -->
+      <div class="card-group">
+         <!-- Day 1 Forecast Card -->
+         <div id="day-0" class="card text-center weather-card">
+            <div class="card-body">
+               <!-- Day and Date for Day 1 -->
+               <h5 class="card-title card-day">Day 1</h5>
+               <h6 class="card-title card-date">Date</h6>
+               <!-- Weather Conditions and Icon for Day 1 -->
+               <p class="card-weather">Conditions</p>
+               <img class="card-icon" src="./assets/images/icons8-question-mark-100.png" alt="weather icon" />
+               <!-- Temperature, Humidity, and Wind Metrics for Day 1 -->
+               <p>Temp: <span class="card-temp"></span> °F</p>
+               <p>RH: <span class="card-humidity"></span>%</p>
+               <p>Wind: <span class="card-wind"></span> MPH</p>
+            </div>
+         </div>
+         <!-- Day 2 Forecast Card -->
+         <div id="day-1" class="card text-center weather-card">
+            <div class="card-body">
+               <!-- Day and Date for Day 2 -->
+               <h5 class="card-title card-day">Day 2</h5>
+               <h6 class="card-title card-date">Date</h6>
+               <!-- Weather Conditions and Icon for Day 2 -->
+               <p class="card-weather">Conditions</p>
+               <img class="card-icon" src="./assets/images/icons8-question-mark-100.png" alt="weather icon" />
+               <!-- Temperature, Humidity, and Wind Metrics for Day 2 -->
+               <p>Temp: <span class="card-temp"></span> °F</p>
+               <p>RH: <span class="card-humidity"></span>%</p>
+               <p>Wind: <span class="card-wind"></span> MPH</p>
+            </div>
+         </div>
+         <!-- Day 3 Forecast Card -->
+         <div id="day-2" class="card text-center weather-card">
+            <div class="card-body">
+               <!-- Day and Date for Day 3 -->
+               <h5 class="card-title card-day">Day 3</h5>
+               <h6 class="card-title card-date">Date</h6>
+               <!-- Weather Conditions and Icon for Day 3 -->
+               <p class="card-weather">Conditions</p>
+               <img class="card-icon" src="./assets/images/icons8-question-mark-100.png" alt="weather icon" />
+               <!-- Temperature, Humidity, and Wind Metrics for Day 3 -->
+               <p>Temp: <span class="card-temp"></span> °F</p>
+               <p>RH: <span class="card-humidity"></span>%</p>
+               <p>Wind: <span class="card-wind"></span> MPH</p>
+            </div>
+         </div>
+         <!-- Day 4 Forecast Card -->
+         <div id="day-3" class="card text-center weather-card">
+            <div class="card-body">
+               <!-- Day and Date for Day 4 -->
+               <h5 class="card-title card-day">Day 4</h5>
+               <h6 class="card-title card-date">Date</h6>
+               <!-- Weather Conditions and Icon for Day 4 -->
+               <p class="card-weather">Conditions</p>
+               <img class="card-icon" src="./assets/images/icons8-question-mark-100.png" alt="weather icon" />
+               <!-- Temperature, Humidity, and Wind Metrics for Day 4 -->
+               <p>Temp: <span class="card-temp"></span> °F</p>
+               <p>RH: <span class="card-humidity"></span>%</p>
+               <p>Wind: <span class="card-wind"></span> MPH</p>
+            </div>
+         </div>
+         <!-- Day 5 Forecast Card -->
+         <div id="day-4" class="card text-center weather-card">
+            <div class="card-body">
+               <!-- Day and Date for Day 5 -->
+               <h5 class="card-title card-day">Day 5</h5>
+               <h6 class="card-title card-date">Date</h6>
+               <!-- Weather Conditions and Icon for Day 5 -->
+               <p class="card-weather">Conditions</p>
+               <img class="card-icon" src="./assets/images/icons8-question-mark-100.png" alt="weather icon" />
+               <!-- Temperature, Humidity, and Wind Metrics for Day 5 -->
+               <p>Temp: <span class="card-temp"></span> °F</p>
+               <p>RH: <span class="card-humidity"></span>%</p>
+               <p>Wind: <span class="card-wind"></span> MPH</p>
+            </div>
+         </div>
+      </div>
+   </section>
 </body>
+
+<!-- MDB - Material Design for Bootstrap JavaScript library -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.2.0/mdb.min.js"></script>
+<!-- jQuery - JavaScript library -->
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<!-- Dayjs - Date and Time library -->
+<script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/dayjs@1/plugin/utc.js"></script>
+<!-- Custom Script -->
+<script>dayjs.extend(window.dayjs_plugin_utc)</script>
+<script src="./assets/js/script.js"></script>
+
 </html>

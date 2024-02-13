@@ -1,0 +1,100 @@
+/* Resetting default margin for paragraphs */
+p {
+    margin: 0;
+  }
+  
+  /* Styling for main content area */
+  main {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    margin: 15px 10%;
+  }
+  
+  /* Styling for Search Bar */
+  main .search {
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  /* Styling for unordered lists within main */
+  main ul {
+    list-style: none;
+    width: 100%;
+    padding: 0;
+  }
+  
+  /* Styling for list items within unordered lists */
+  main ul li {
+    width: fit-content;
+    margin: 10px;
+  }
+  
+  /* Styling for location entry textboxes */
+  main .entrybox {
+    display: block;
+    flex-wrap: wrap;
+    width: fit-content;
+    text-align: center;
+  }
+  
+  /* Styling for search and history buttons */
+  main .searchbox {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    width: fit-content;
+  }
+  
+  /* Styling for history entries dropdown */
+  #city-dropdown {
+    width: fit-content;
+    height: auto;
+    max-height: 220px;
+    overflow-y: scroll;
+  }
+  
+  /* Styling for items in the dropdown list */
+  .dropdown-item {
+    height: 35px;
+  }
+  
+  /* Styling for the current weather card */
+  .current-weather-card {
+    width: fit-content;
+    min-width: 400px;
+  }
+  
+  /* Styling for rows within the current weather card */
+  .current-weather-card div .row {
+    margin-top: 10px;
+  }
+  
+  /* Styling for weather metrics within the current weather card */
+  .metrics {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: fit-content;
+  }
+  
+  /* Styling for the Five Day Forecast Section */
+  section {
+    margin: 0px 10% 10px 10%;
+  }
+  
+  /* Styling for each card in the forecast */
+  .weather-card {
+    min-width: fit-content;
+    max-width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  /* Styling to hide forecast elements */
+  .hidden {
+    display: none;
+  }
+  
